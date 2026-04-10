@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<body style="text-align:center; font-family:Arial;">
+
+<h2>AI Search Engine 🔍</h2>
+
+<input id="search" onkeyup="find()" placeholder="Search products...">
+
+<ul id="results"></ul>
+
+<script>
+
+// 🛍️ Products
+let products = [
+  "Phone 📱",
+  "Headphones 🎧",
+  "Charger 🔌",
+  "Shoes 👟",
+  "Socks 🧦",
+  "Laptop 💻",
+  "Mouse 🖱️"
+];
+
+function find() {
+
+  let input = document.getElementById("search").value.toLowerCase();
+  let results = document.getElementById("results");
+
+  results.innerHTML = "";
+
+  products.forEach(item => {
+
+    let text = item.toLowerCase();
+
+    // 🧠 Step 1: assume no match
+    let matchFound = false;
+
+    // ✅ Step 2: normal match
+    if (text.includes(input)) {
+      matchFound = true;
+    }
+
+    // 🤖 Step 3: phone related
+    if (input.includes("phone")) {
+      if (text.includes("head") || text.includes("charger")) {
+        matchFound = true;
+      }
+    }
+
+    // 👟 Step 4: shoes related
+    if (input.includes("shoes")) {
+      if (text.includes("sock")) {
+        matchFound = true;
+      }
+    }
+
+    // 💻 Step 5: laptop related
+    if (input.includes("laptop")) {
+      if (text.includes("mouse")) {
+        matchFound = true;
+      }
+    }
+
+    // 🎯 Final step (YOUR STYLE)
+    if (matchFound) {
+      let li = document.createElement("li");
+      li.innerText = item;
+      results.appendChild(li);
+    }
+
+  });
+}
+
+</script>
+
+</body>
+</html>
