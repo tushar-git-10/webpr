@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Simple AI</title>
+</head>
+<body style="text-align:center">
+  <h3>Upload Image 🤖</h3>
+  <input type="file" id="input">
+  <br><br>
+  <img id="img" width="200">
+  <p id="result">Result: </p>
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/mobilenet"></script>
+  <script>
+    const modelPromise = mobilenet.load();
+    const input = document.getElementById("input");
+    const img = document.getElementById("img");
+    const result = document.getElementById("result");
+    input.onchange = () => {
+      img.src = URL.createObjectURL(input.files[0]);
+    };
+    img.onload = async () => {
+      const model = await modelPromise;
+      const predictions = await model.classify(img);
+      result.innerText = "Result: " + predictions[0].className;
+    };
+  </script>
+
+</body>
+</html>
