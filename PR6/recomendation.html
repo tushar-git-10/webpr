@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<body style="text-align:center">
+<h2>E-Commerce Store 🛒</h2>
+<h3>Products</h3>
+<div>
+  <p>Phone 📱</p>
+  <button onclick="recommend('phone')">Add to Cart</button>
+</div>
+<div>
+  <p>Shoes 👟</p>
+  <button onclick="recommend('shoes')">Add to Cart</button>
+</div>
+<div>
+  <p>Laptop 💻</p>
+  <button onclick="recommend('laptop')">Add to Cart</button>
+</div>
+<hr>
+<h3>Recommended for you 🤖</h3>
+<p id="rec"></p>
+<script>
+
+// AI recommendation logic
+function recommend(item) {
+  let suggestion = "";
+
+  if (item === "phone")
+    document.getElementById("rec").innerText = "Buy Headphones 🎧 and Charger 🔌";
+
+  else if (item === "shoes")
+    document.getElementById("rec").innerText = "Buy Socks 🧦 and Shoe Cleaner 🧴";
+
+  else if (item === "laptop")
+    document.getElementById("rec").innerText = "Buy Mouse 🖱️ and Bag 🎒";
+
+ 
+}
+</script>
+</body>
+</html>
