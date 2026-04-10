@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<body>
+    <h3>AI Secure Login</h3>
+    
+    <div id="loginForm">
+        <input type="text" id="user" placeholder="Username">
+        <input type="password" id="pass" placeholder="Password">
+        <button onclick="checkAI()">Sign In</button>
+    </div>
+
+    <div id="mfa" style="display:none">
+        <p>Unusual Activity! Enter OTP (1234):</p>
+        <input type="text" id="otp">
+        <button onclick="verify()">Verify OTP</button>
+    </div>
+
+    <p id="msg"></p>
+
+    <script>
+        let fails = 0; // AI tracking for anomaly detection
+
+        function checkAI() {
+            let u = document.getElementById('user').value;
+            let p = document.getElementById('pass').value;
+            let out = document.getElementById('msg');
+
+            if (u === "admin" && p === "1234") {
+                // If there were previous failures, AI triggers MFA
+                if (fails > 0) {
+                    document.getElementById('loginForm').style.display = "none";
+                    document.getElementById('mfa').style.display = "block";
+                    out.innerText = "Anomaly detected: MFA Required.";
+                    alert("Your opt is 1234");
+                } else {
+                    out.innerText = "✅ Login Successful!";
+                }
+            } else {
+                fails++; // Log an anomaly
+                out.innerText = "Wrong credentials. Attempt: " + fails;
+                if (fails >= 3) out.innerText = "❌ ACCOUNT LOCKED (Security)";
+            }
+        }
+
+        function verify() {
+            let code = document.getElementById('otp').value;
+            if (code === "1234") {
+                document.getElementById('msg').innerText = "✅ MFA Verified. Access Granted!";
+            } else {
+                document.getElementById('msg').innerText = "❌ Wrong OTP!";
+            }
+        }
+    </script>
+</body>
+</html>

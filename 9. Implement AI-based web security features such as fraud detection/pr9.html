@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<body>
+    <h3>AI Secure Login</h3>
+    
+    <input type="text" id="user" placeholder="Username"><br><br>
+    <input type="password" id="pass" placeholder="Password"><br><br>
+    
+    <button onclick="loginAI()">Login</button>
+    
+    <p id="msg"></p>
+
+    <script>
+        let failedCounter = 0; // Simple AI counter for anomaly detection
+
+        function loginAI() {
+            let user = document.getElementById('user').value;
+            let pass = document.getElementById('pass').value;
+            let display = document.getElementById('msg');
+
+            // 1. SIMPLE LOGIC: Check credentials
+            if (user === "admin" && pass === "admin") {
+                display.innerText = "✅ Access Granted!";
+                display.style.color = "green";
+                failedCounter = 0; // Reset on success
+            } 
+            else {
+                failedCounter++; // Record an anomaly
+                
+                // 2. AI-BASED RESPONSE
+                if (failedCounter >= 3) {
+                    display.innerText = "❌ ANOMALY DETECTED: Account Locked for Security.";
+                    display.style.color = "red";
+                } else {
+                    display.innerText = "Invalid. Attempts: " + failedCounter;
+                    display.style.color = "orange";
+                }
+            }
+        }
+    </script>
+</body>
+</html>
