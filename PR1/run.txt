@@ -1,0 +1,15 @@
+npx create-react-app Pr1
+
+npm install @tensorflow/tfjs @tensorflow-models/mobilenet
+
+Run the app
+
+npm start
+
+
+If Something Doesn’t Work
+🔴 Error: mobilenet not found
+
+Run again:
+
+npm install @tensorflow-models/mobilenet
