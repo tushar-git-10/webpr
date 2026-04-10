@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>Sentiment Checker</h2>
+
+<input id="text" placeholder="Type here">
+<button onclick="check()">Check</button>
+
+<p id="result"></p>
+
+<script>
+function check() {
+  let t = document.getElementById("text").value.toLowerCase();
+
+  // Grouped words
+  let positive = ["good", "happy", "love", "awesome", "great"];
+  let negative = ["bad", "sad", "hate", "worst", "angry"];
+
+  // Check positive
+  for (let word of positive) {
+    if (t.includes(word)) {
+      document.getElementById("result").innerText = "😊 Positive";
+      return;
+    }
+  }
+
+  // Check negative
+  for (let word of negative) {
+    if (t.includes(word)) {
+      document.getElementById("result").innerText = "😡 Negative";
+      return;
+    }
+  }
+
+  // Default
+  document.getElementById("result").innerText = "😐 Neutral";
+}
+</script>
+
+</body>
+</html>

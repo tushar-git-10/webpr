@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>Chatbot 🤖</h2>
+
+<div id="chat"></div>
+
+<input id="msg">
+<button onclick="send()">Send</button>
+
+<script>
+function send() {
+  let m = msg.value.toLowerCase();
+  let r = "I don't understand 😅";
+
+  if (m.includes("hi") || m.includes("hello")) r = "Hello 😊";
+  else if (m.includes("name")) r = "I am chatbot 🤖";
+  else if (m.includes("bye")) r = "Bye 👋";
+
+  chat.innerHTML += "You: " + msg.value + "<br>";
+  chat.innerHTML += "Bot: " + r + "<br><br>";
+
+  msg.value = "";
+}
+</script>
+
+</body>
+</html>
